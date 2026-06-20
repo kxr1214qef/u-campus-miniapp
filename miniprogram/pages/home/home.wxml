@@ -1,0 +1,241 @@
+<template name="homeGoodsCard">
+  <view class="goods-card paper-goods-card {{item.publishType == 'wanted' ? 'wanted-card' : ''}}" data-id="{{item._id}}" bindtap="goDetail">
+    <view class="goods-ribbon {{item.publishType == 'wanted' ? 'wanted' : ''}}">
+      {{item.publishType == 'wanted' ? '求购' : '新货'}}
+    </view>
+
+    <view class="goods-media">
+      <image wx:if="{{item.cover}}" class="goods-img" src="{{item.cover}}" mode="aspectFill" />
+      <view wx:elif="{{item.publishType == 'wanted'}}" class="wanted-note">
+        <view class="wanted-note-label">求购中</view>
+        <view class="wanted-note-price">{{item.priceText}}</view>
+      </view>
+      <view wx:else class="goods-placeholder">
+        <view class="placeholder-line wide"></view>
+        <view class="placeholder-line"></view>
+        <view class="placeholder-dot"></view>
+      </view>
+    </view>
+
+    <view class="goods-main">
+      <view class="goods-top">
+        <view class="goods-title line-2">{{item.title}}</view>
+        <view class="favorite-mark"></view>
+      </view>
+
+      <view wx:if="{{item.description}}" class="goods-desc line-1">{{item.description}}</view>
+
+      <view class="meta-row">
+        <view class="mini-tag">{{item.displayCategory || item.category}}</view>
+        <view wx:for="{{item.tags}}" wx:key="*this" class="mini-tag soft">{{item}}</view>
+      </view>
+
+      <view class="goods-bottom">
+        <view class="price-text">{{item.priceText}}</view>
+        <view class="owner-row">
+          <image class="avatar small" src="{{item.ownerAvatarUrl}}" mode="aspectFill" />
+          <view class="owner-copy">
+            <view class="owner-name line-1">{{item.ownerNickName || '热心同学'}}</view>
+            <view wx:if="{{item.locationText}}" class="location line-1">{{item.locationText}}</view>
+            <view wx:else class="location line-1">{{item.timeText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<view class="container with-tabbar home-page">
+  <view class="market-hero stage-fade delay-0">
+    <view class="hero-skyline">
+      <view class="building building-a"></view>
+      <view class="building building-b"></view>
+      <view class="building building-c"></view>
+    </view>
+
+    <view class="light-string">
+      <view class="bulb bulb-a"></view>
+      <view class="bulb bulb-b"></view>
+      <view class="bulb bulb-c"></view>
+      <view class="bulb bulb-d"></view>
+      <view class="bulb bulb-e"></view>
+    </view>
+
+    <view class="hero-board">
+      <view class="market-badge">今晚开集</view>
+      <view class="hero-title">U校集</view>
+      <view class="hero-subtitle">校园里的宝贝，都在这里开摊</view>
+      <view class="hero-green-strip">你好，{{greetingName}}，来逛逛今天的后街集市</view>
+    </view>
+
+    <view class="side-sign">后街集市</view>
+
+    <view class="stall-scene">
+      <view class="stall-canopy"></view>
+      <view class="stall-table">
+        <view class="stall-item item-a"></view>
+        <view class="stall-item item-b"></view>
+        <view class="stall-item item-c"></view>
+      </view>
+      <view class="bike-wheel"></view>
+    </view>
+  </view>
+
+  <view class="market-search-card stage-fade delay-1">
+    <view class="search-icon"></view>
+    <input
+      class="search-input"
+      placeholder="搜教材、耳机、自行车、宿舍好物..."
+      placeholder-class="input-placeholder"
+      value="{{keyword}}"
+      bindinput="onSearchInput"
+      bindconfirm="applyFilters"
+      confirm-type="search"
+    />
+    <text wx:if="{{keyword}}" class="clear-btn" bindtap="clearSearch">清空</text>
+    <view class="search-action" bindtap="applyFilters">搜索</view>
+  </view>
+
+  <view class="notice-section stage-fade delay-2">
+    <view class="wood-board">
+      <view class="notice-title-wrap">
+        <view class="notice-title">集市告示</view>
+      </view>
+
+      <view class="notice-grid">
+        <view class="notice-note note-new">
+          <view class="pin"></view>
+          <view class="note-sticker">NEW</view>
+          <view class="note-symbol box-symbol"></view>
+          <view class="note-title">今日新货</view>
+          <view class="note-desc">发现最新好物</view>
+        </view>
+
+        <view class="notice-note note-hot">
+          <view class="pin"></view>
+          <view class="note-sticker">HOT</view>
+          <view class="note-symbol bolt-symbol"></view>
+          <view class="note-title">急出快报</view>
+          <view class="note-desc">急出好物速来</view>
+        </view>
+
+        <view class="notice-note note-wanted">
+          <view class="pin"></view>
+          <view class="note-sticker blue">求购中</view>
+          <view class="note-symbol search-symbol"></view>
+          <view class="note-title">求购悬赏</view>
+          <view class="note-desc">大家都在找这个</view>
+        </view>
+
+        <view class="notice-note note-rule">
+          <view class="pin"></view>
+          <view class="note-sticker pink">须知</view>
+          <view class="note-symbol megaphone-symbol"></view>
+          <view class="note-title">集市须知</view>
+          <view class="note-desc">规则与注意事项</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="street-section stage-fade delay-3">
+    <view class="cloth-title">
+      <text>淘货街区</text>
+      <view class="cloth-curl"></view>
+    </view>
+
+    <scroll-view class="category-scroll" scroll-x enable-flex>
+      <view class="category-list">
+        <view
+          wx:for="{{categoryCards}}"
+          wx:key="name"
+          class="market-category illust-card-{{item.key}} {{activeCategory === item.name ? 'active' : ''}}"
+          data-category="{{item.name}}"
+          bindtap="onSelectCategory"
+        >
+          <view class="category-illust market-illust illust-{{item.key}}" aria-label="{{item.label}}">
+            <view class="illust-part part-a"></view>
+            <view class="illust-part part-b"></view>
+            <view class="illust-part part-c"></view>
+            <view class="illust-part part-d"></view>
+            <view class="illust-part part-e"></view>
+          </view>
+          <view class="category-name">{{item.name}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="goods-market-panel stage-fade delay-4">
+    <view class="goods-head">
+      <view class="goods-head-row">
+        <view class="goods-title-wrap">
+          <view class="goods-section-title">{{activeListType === 'wanted' ? '求购悬赏' : '出物奇摊'}}</view>
+          <view class="goods-title-mark"></view>
+        </view>
+      </view>
+
+      <view class="market-entry-grid">
+        <view
+          class="market-entry-card entry-idle {{activeListType === 'idle' ? 'active' : 'muted'}}"
+          data-type="idle"
+          bindtap="onSwitchListType"
+        >
+          <view class="entry-tape"></view>
+          <view class="entry-pin"></view>
+          <view class="entry-illustration stall-illustration">
+            <view class="stall-roof"></view>
+            <view class="stall-sign"></view>
+            <view class="stall-counter"></view>
+            <view class="stall-door"></view>
+          </view>
+          <view class="entry-copy">
+            <view class="entry-title">出物奇摊</view>
+            <view class="entry-desc">把闲置宝贝摆上摊</view>
+          </view>
+        </view>
+
+        <view
+          class="market-entry-card entry-wanted {{activeListType === 'wanted' ? 'active' : 'muted'}}"
+          data-type="wanted"
+          bindtap="onSwitchListType"
+        >
+          <view class="entry-tape"></view>
+          <view class="entry-pin"></view>
+          <view class="entry-illustration wanted-illustration">
+            <view class="wanted-target"></view>
+            <view class="wanted-dart">
+              <view class="dart-wing wing-a"></view>
+              <view class="dart-wing wing-b"></view>
+            </view>
+          </view>
+          <view class="entry-copy">
+            <view class="entry-title">求购悬赏</view>
+            <view class="entry-desc">发布想找的校园好物</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="section-subtitle">{{goodsList.length}} {{listCopy.unit}}</view>
+      <view class="refresh-hint">{{refreshTip}}</view>
+    </view>
+
+    <view wx:if="{{goodsList.length}}" class="goods-list market-list">
+      <block wx:for="{{goodsList}}" wx:key="_id">
+        <template is="homeGoodsCard" data="{{item: item}}" />
+      </block>
+
+      <view class="load-more-tip">
+        <text wx:if="{{loadingMore}}">摊主正在补货...</text>
+        <text wx:elif="{{activeHasMore}}">上滑继续逛集市</text>
+        <text wx:else>今天的摊位都逛完啦</text>
+      </view>
+    </view>
+
+    <view wx:else class="empty-wrap paper-empty">
+      <view class="empty-pin"></view>
+      <view class="empty-title">{{listCopy.emptyTitle}}</view>
+      <view class="empty-desc">{{listCopy.emptyDesc}}</view>
+    </view>
+  </view>
+</view>

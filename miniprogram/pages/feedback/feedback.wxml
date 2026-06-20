@@ -1,0 +1,26 @@
+<view class="container feedback-page">
+  <view class="page-top">
+    <view class="back-chip" bindtap="goBack">‹ 返回</view>
+  </view>
+
+  <view class="feedback-hero card">
+    <view class="hero-title">帮我们改进 U校集</view>
+    <view class="hero-desc">如果你在使用时遇到问题，或者希望 U校集增加某个功能，直接写给我们就好。</view>
+  </view>
+
+  <view class="card form-card">
+    <view class="field-title">你想告诉我们什么？</view>
+    <textarea
+      class="feedback-textarea"
+      value="{{form.content}}"
+      maxlength="{{maxContentLength}}"
+      placeholder="例如：发布求购不够方便、想增加收藏夹、聊天提醒不明显、某个页面点了没反应……"
+      bindinput="onContentInput"
+    />
+    <view class="text-count">{{contentLength}}/{{maxContentLength}}</view>
+  </view>
+
+  <button class="submit-btn" loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitFeedbackForm">
+    提交给我们
+  </button>
+</view>

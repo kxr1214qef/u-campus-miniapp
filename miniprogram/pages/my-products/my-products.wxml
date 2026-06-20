@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="simple-topbar">
+    <view class="back-chip" bindtap="goBack">返回</view>
+  </view>
+
+  <view class="card page-card">
+    <view class="page-head">
+      <view class="page-head-main">
+        <view class="section-title">{{pageCopy.title}}</view>
+        <view class="section-subtitle">{{pageCopy.subtitle}}</view>
+      </view>
+      <view class="type-switch" bindtap="onSwitchPublishType">
+        <view
+          wx:for="{{publishTypeOptions}}"
+          wx:key="type"
+          class="type-switch-item {{activePublishType == item.type ? 'active' : ''}}"
+        >
+          {{item.text}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{list.length}}" class="my-goods-list">
+    <view wx:for="{{list}}" wx:key="_id" class="my-goods-card card" bindtap="goDetail" data-id="{{item._id}}">
+      <image wx:if="{{item.cover}}" class="my-goods-cover" src="{{item.cover}}" mode="aspectFill" />
+      <view wx:else class="my-goods-placeholder">
+        <view class="placeholder-label">{{item.publishType == 'wanted' ? '求购' : '暂无图片'}}</view>
+      </view>
+
+      <view class="my-goods-main">
+        <view class="my-goods-title line-2">{{item.title}}</view>
+        <view class="my-goods-price">{{item.priceText}}</view>
+        <view class="my-goods-meta">{{item.displayCategory || item.category}} · {{item.timeText}}</view>
+
+        <view class="my-goods-actions">
+          <view class="status-badge {{item.status == 'on' ? 'status-on' : (item.status == 'sold' ? 'status-sold' : 'status-off')}}">
+            {{item.statusText}}
+          </view>
+          <view class="action-row">
+            <button class="action-btn secondary-btn" data-id="{{item._id}}" data-status="{{item.status}}" data-publish-type="{{item.publishType}}" catchtap="toggleStatus">
+              {{item.actionText}}
+            </button>
+            <button class="action-btn delete-btn" data-id="{{item._id}}" catchtap="deleteGoods">删除</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-wrap card">
+    <view class="empty-title">{{pageCopy.emptyTitle}}</view>
+    <view class="empty-desc">{{pageCopy.emptyDesc}}</view>
+  </view>
+</view>

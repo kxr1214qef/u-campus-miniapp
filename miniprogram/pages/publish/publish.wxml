@@ -1,0 +1,110 @@
+<view class="container with-tabbar publish-page">
+  <view wx:if="{{loginChecked && !canPublish}}" class="card login-gate">
+    <view class="section-title">先登录再发布</view>
+    <view class="section-subtitle">完善昵称并保存后，就可以上传图片并发布校园闲置或需求。</view>
+    <button class="primary-btn gate-btn" bindtap="goLoginPage">去登录</button>
+  </view>
+
+  <view wx:if="{{canPublish}}" class="card publish-card">
+    <view class="publish-head">
+      <view class="publish-head-main">
+        <view class="section-title">{{copy.title}}</view>
+        <view class="section-subtitle">{{copy.subtitle}}</view>
+      </view>
+      <view class="publish-switch" bindtap="onSwitchPublishType">
+        <view
+          wx:for="{{publishTypeOptions}}"
+          wx:key="type"
+          class="publish-switch-item {{publishType == item.type ? 'active' : ''}}"
+        >
+          {{item.text}}
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="label">{{copy.imageLabel}}</view>
+      <view class="sub-label">{{copy.imageHint}}</view>
+      <view class="image-list">
+        <view wx:for="{{imagePreviews}}" wx:key="*this" class="image-item">
+          <image class="preview" src="{{item}}" mode="aspectFill" />
+          <view class="remove" data-index="{{index}}" bindtap="removeImage">×</view>
+        </view>
+        <view wx:if="{{form.images.length < 3}}" class="upload-entry" bindtap="chooseImages">
+          <text class="upload-plus">＋</text>
+          <text class="upload-text">{{copy.imageButton}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="label">{{copy.titleLabel}}</view>
+      <input class="input-box" placeholder="{{copy.titlePlaceholder}}" placeholder-class="input-placeholder" value="{{form.title}}" bindinput="onTitleInput" />
+    </view>
+
+    <view class="block">
+      <view class="label">{{copy.categoryLabel}}</view>
+      <view class="category-market-grid">
+        <view
+          wx:for="{{categoryCards}}"
+          wx:key="name"
+          class="category-market-card illust-card-{{item.key}} {{form.category == item.name ? 'active' : ''}}"
+          data-category="{{item.name}}"
+          bindtap="onSelectCategory"
+        >
+          <view class="category-card-pin"></view>
+          <view class="category-card-visual market-illust illust-{{item.key}}" aria-label="{{item.label}}">
+            <view class="illust-part part-a"></view>
+            <view class="illust-part part-b"></view>
+            <view class="illust-part part-c"></view>
+            <view class="illust-part part-d"></view>
+            <view class="illust-part part-e"></view>
+          </view>
+          <view class="category-card-name">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="label">{{tagTitle}}</view>
+      <view class="sub-label">{{tagHint}}</view>
+      <view class="market-tag-wrap">
+        <view
+          wx:for="{{tagOptions}}"
+          wx:key="*this"
+          class="tag-sticker {{selectedTagsMap[item] ? 'active' : ''}}"
+          data-tag="{{item}}"
+          bindtap="onToggleTag"
+        >
+          <view class="tag-sticker-tape"></view>
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="block">
+      <view class="label">{{copy.descriptionLabel}}</view>
+      <textarea class="textarea-box" placeholder="{{copy.descriptionPlaceholder}}" placeholder-class="input-placeholder" value="{{form.description}}" bindinput="onDescriptionInput" maxlength="300" />
+    </view>
+
+    <view class="block">
+      <view class="label">6. 位置（选填）</view>
+      <view class="sub-label">手动打开地图选择一个方便线下沟通的位置。</view>
+      <view class="location-picker" bindtap="chooseLocation">
+        <view class="location-main">
+          <view class="location-title line-1">{{form.location ? (form.location.name || '已选择位置') : '选择位置'}}</view>
+          <view class="location-desc line-1">{{form.location ? (form.location.address || '暂无详细地址') : '点击打开地图选点'}}</view>
+        </view>
+        <view class="location-action">{{choosingLocation ? '打开中' : '地图'}}</view>
+      </view>
+      <view wx:if="{{form.location}}" class="clear-location" bindtap="clearLocation">清除位置</view>
+    </view>
+
+    <view class="block">
+      <view class="label">{{copy.priceLabel}}</view>
+      <input class="input-box" type="digit" placeholder="{{copy.pricePlaceholder}}" placeholder-class="input-placeholder" value="{{form.price}}" bindinput="onPriceInput" />
+    </view>
+
+    <button class="primary-btn submit-btn" loading="{{submitting}}" bindtap="submitGoods">{{copy.submitText}}</button>
+  </view>
+</view>

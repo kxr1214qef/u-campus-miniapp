@@ -1,0 +1,131 @@
+.seller-page {
+  padding-top: calc(env(safe-area-inset-top) + 100rpx);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(244, 199, 107, 0.18) 0%, rgba(244, 199, 107, 0) 30%),
+    radial-gradient(circle at 88% 12%, rgba(63, 95, 59, 0.12) 0%, rgba(63, 95, 59, 0) 28%),
+    linear-gradient(180deg, #fff9ef 0%, #fbf7ef 100%);
+}
+
+.seller-card {
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.seller-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #fff6e8;
+  border: 4rpx solid rgba(230, 210, 168, 0.95);
+}
+
+.seller-main {
+  flex: 1;
+  margin-left: 24rpx;
+}
+
+.seller-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #4a3425;
+}
+
+.seller-signature,
+.seller-status {
+  margin-top: 10rpx;
+  color: #7b6652;
+  line-height: 1.7;
+}
+
+.section-block {
+  margin: 28rpx 0 18rpx;
+}
+
+.goods-list {
+  margin-top: 18rpx;
+}
+
+.goods-waterfall {
+  display: flex;
+  gap: 20rpx;
+  align-items: flex-start;
+}
+
+.goods-column {
+  flex: 1;
+  min-width: 0;
+}
+
+.goods-card {
+  width: 100%;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  border: 2rpx solid rgba(230, 210, 168, 0.9);
+}
+
+.goods-img {
+  width: 100%;
+  display: block;
+  border-radius: 24rpx 24rpx 0 0;
+  background: #f6ead2;
+}
+
+.wanted-note {
+  padding: 28rpx 22rpx;
+  background: #fff6e8;
+  border-radius: 24rpx 24rpx 0 0;
+}
+
+.wanted-note-label {
+  display: inline-flex;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 246, 222, 0.86);
+  color: #8b5e34;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.wanted-note-price {
+  margin-top: 18rpx;
+  color: #b8402f;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.goods-main {
+  padding: 20rpx;
+}
+
+.goods-top,
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.goods-title {
+  max-width: 320rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #4a3425;
+}
+
+.mini-tag {
+  display: inline-flex;
+  padding: 8rpx 18rpx;
+  border-radius: 14rpx;
+  background: #fff1ce;
+  color: #8b5e34;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+}
+
+.mini-tag.soft {
+  background: #fffdf8;
+  color: #3f5f3b;
+  border: 2rpx solid rgba(230, 210, 168, 0.72);
+}

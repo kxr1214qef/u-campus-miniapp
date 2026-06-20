@@ -1,0 +1,142 @@
+.detail-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(244, 199, 107, 0.2) 0%, transparent 28%),
+    radial-gradient(circle at 12% 12%, rgba(63, 95, 59, 0.12) 0%, transparent 28%),
+    linear-gradient(180deg, #fff9ef 0%, #fbf7ef 100%);
+}
+
+.detail-topbar {
+  padding: calc(env(safe-area-inset-top) + 70rpx) 24rpx 18rpx;
+}
+
+.detail-swiper-wrap {
+  padding: 0 24rpx;
+}
+
+.detail-swiper {
+  width: 100%;
+  transition: height 0.2s ease;
+}
+
+.detail-img {
+  width: 100%;
+  display: block;
+  border-radius: 24rpx;
+  background: #f6ead2;
+}
+
+.detail-container {
+  padding-top: 22rpx;
+}
+
+.info-card,
+.desc-card,
+.location-card,
+.seller-card {
+  margin-top: 20rpx;
+  padding: 28rpx;
+  border: 2rpx solid rgba(230, 210, 168, 0.92);
+}
+
+.title-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.detail-title {
+  flex: 1;
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #4a3425;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 18rpx;
+}
+
+.mini-tag {
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: #fff1ce;
+  color: #8b5e34;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.mini-tag.soft {
+  background: #fffdf8;
+  color: #3f5f3b;
+  border: 2rpx solid rgba(230, 210, 168, 0.72);
+}
+
+.detail-meta {
+  margin-top: 12rpx;
+  line-height: 1.7;
+  color: #7b6652;
+}
+
+.desc-text {
+  margin-top: 18rpx;
+  line-height: 1.9;
+  color: #455346;
+}
+
+.location-name {
+  margin-top: 18rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #31422f;
+}
+
+.location-address {
+  margin-top: 10rpx;
+  line-height: 1.7;
+  color: #72816d;
+}
+
+.seller-row {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.seller-avatar {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.seller-main {
+  flex: 1;
+  margin-left: 18rpx;
+}
+
+.seller-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #31422f;
+}
+
+.contact-btn {
+  margin-top: 26rpx;
+  margin-bottom: 30rpx;
+}
+
+.disabled-contact {
+  background: #eef1ea;
+  color: #889282;
+}
+
+.seller-row {
+  align-items: center;
+}
+
+.seller-arrow {
+  margin-left: 16rpx;
+  color: #97a58d;
+  font-size: 36rpx;
+}

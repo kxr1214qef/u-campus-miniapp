@@ -1,0 +1,73 @@
+<view class="detail-page" wx:if="{{goods}}">
+  <view class="detail-topbar">
+    <view class="back-chip light" bindtap="goBack">‹ 返回</view>
+  </view>
+
+  <view class="detail-swiper-wrap">
+    <swiper
+      class="detail-swiper"
+      style="height: {{currentImageHeight}}px;"
+      indicator-dots="{{goods.images.length > 1}}"
+      autoplay="{{false}}"
+      interval="3000"
+      circular
+      current="{{currentImageIndex}}"
+      bindchange="onSwiperChange"
+    >
+      <swiper-item wx:for="{{goods.images}}" wx:key="*this">
+        <image
+          class="detail-img"
+          src="{{item}}"
+          mode="widthFix"
+          data-src="{{item}}"
+          data-index="{{index}}"
+          bindload="onImageLoad"
+          bindtap="previewImage"
+          binderror="onDetailImageError"
+        />
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="container detail-container">
+    <view class="card info-card">
+      <view class="title-row">
+        <view class="detail-title line-2">{{goods.title}}</view>
+        <view class="price-text">{{goods.priceText}}</view>
+      </view>
+      <view class="tag-row">
+        <view class="mini-tag">{{goods.displayCategory || goods.category}}</view>
+        <view wx:for="{{goods.tags}}" wx:key="*this" class="mini-tag soft">{{item}}</view>
+      </view>
+      <view class="detail-meta">发布时间：{{goods.createdTime}}</view>
+    </view>
+
+    <view class="card desc-card">
+      <view class="section-title">{{detailCopy.descTitle}}</view>
+      <view class="desc-text">{{goods.description || detailCopy.emptyDesc}}</view>
+    </view>
+
+    <view wx:if="{{goods.location}}" class="card location-card">
+      <view class="section-title">位置</view>
+      <view class="location-name">{{goods.location.name || '已选择位置'}}</view>
+      <view wx:if="{{goods.location.address}}" class="location-address">{{goods.location.address}}</view>
+    </view>
+
+    <view class="card seller-card" bindtap="goSellerProfile">
+      <view class="section-title">{{detailCopy.ownerTitle}}</view>
+      <view class="seller-row">
+        <image class="avatar seller-avatar" src="{{goods.ownerAvatarUrl || defaultAvatar}}" mode="aspectFill" binderror="onAvatarError" />
+        <view class="seller-main">
+          <view class="seller-name">{{goods.ownerNickName || '热心同学'}}</view>
+          <view class="muted line-1">{{detailCopy.ownerHint}}</view>
+        </view>
+        <view class="seller-arrow">›</view>
+      </view>
+    </view>
+
+    <button wx:if="{{!isOwner}}" class="primary-btn contact-btn {{!canContact ? 'disabled-contact' : ''}}" bindtap="contactSeller" disabled="{{!canContact}}">
+      {{canContact ? detailCopy.contactText : detailCopy.disabledText}}
+    </button>
+    <button wx:else class="ghost-btn contact-btn">{{detailCopy.ownerSelfText}}</button>
+  </view>
+</view>
