@@ -7,17 +7,49 @@
 
   <view wx:if="{{canPublish}}" class="card publish-card">
     <view class="publish-head">
-      <view class="publish-head-main">
-        <view class="section-title">{{copy.title}}</view>
-        <view class="section-subtitle">{{copy.subtitle}}</view>
+      <view class="publish-hero-card">
+        <view class="publish-hero-tape"></view>
+        <view class="publish-hero-pin"></view>
+        <view class="publish-head-main">
+          <view class="publish-kicker">校园集市开摊处</view>
+          <view class="section-title publish-title">开摊发布</view>
+          <view class="section-subtitle publish-subtitle">摆上闲置，也能挂出求购</view>
+        </view>
+        <view class="publish-stall-illust">
+          <view class="publish-stall-light"></view>
+          <view class="publish-stall-roof"></view>
+          <view class="publish-stall-sign"></view>
+          <view class="publish-stall-woodtag"></view>
+          <view class="publish-stall-counter"></view>
+          <view class="publish-stall-box box-a"></view>
+          <view class="publish-stall-box box-b"></view>
+          <view class="publish-stall-bag"></view>
+          <view class="publish-stall-door"></view>
+        </view>
       </view>
-      <view class="publish-switch" bindtap="onSwitchPublishType">
+
+      <view class="publish-switch">
         <view
           wx:for="{{publishTypeOptions}}"
           wx:key="type"
-          class="publish-switch-item {{publishType == item.type ? 'active' : ''}}"
+          class="publish-switch-item publish-switch-{{item.type}} {{publishType == item.type ? 'active' : ''}}"
+          data-type="{{item.type}}"
+          bindtap="onSwitchPublishType"
         >
-          {{item.text}}
+          <view wx:if="{{item.type == 'idle'}}" class="publish-type-illust publish-type-shop">
+            <view class="type-stall-roof"></view>
+            <view class="type-stall-sign"></view>
+            <view class="type-stall-counter"></view>
+            <view class="type-stall-door"></view>
+          </view>
+          <view wx:else class="publish-type-illust publish-type-target">
+            <view class="type-wanted-target"></view>
+            <view class="type-wanted-dart">
+              <view class="type-dart-wing wing-a"></view>
+              <view class="type-dart-wing wing-b"></view>
+            </view>
+          </view>
+          <view class="publish-switch-title">{{item.text}}</view>
         </view>
       </view>
     </view>

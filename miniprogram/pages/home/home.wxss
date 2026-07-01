@@ -71,13 +71,36 @@
 
 .market-hero {
   position: relative;
-  min-height: 520rpx;
+  min-height: 540rpx;
   overflow: hidden;
   border-radius: 0 0 42rpx 42rpx;
   background:
-    radial-gradient(circle at 76% 22%, rgba(255, 171, 72, 0.28) 0%, rgba(255, 171, 72, 0) 26%),
-    linear-gradient(180deg, #0e1e27 0%, #172a2e 40%, #5e351e 100%);
-  box-shadow: 0 24rpx 50rpx rgba(88, 53, 25, 0.28);
+    radial-gradient(circle at 78% 18%, rgba(244, 199, 107, 0.34) 0%, rgba(244, 199, 107, 0) 24%),
+    radial-gradient(circle at 20% 72%, rgba(217, 139, 58, 0.2) 0%, rgba(217, 139, 58, 0) 30%),
+    linear-gradient(180deg, #0f1b24 0%, #10202a 48%, #203928 100%);
+  box-shadow: 0 22rpx 44rpx rgba(56, 40, 25, 0.2);
+}
+
+.market-hero::before {
+  content: "";
+  position: absolute;
+  left: -80rpx;
+  right: -80rpx;
+  bottom: -68rpx;
+  height: 190rpx;
+  border-radius: 50% 50% 0 0;
+  background: rgba(10, 22, 18, 0.38);
+}
+
+.market-hero::after {
+  content: "";
+  position: absolute;
+  right: 44rpx;
+  bottom: 112rpx;
+  width: 210rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: rgba(244, 199, 107, 0.12);
 }
 
 .hero-skyline {
@@ -92,7 +115,7 @@
   position: absolute;
   bottom: 0;
   border-radius: 8rpx 8rpx 0 0;
-  background: rgba(7, 19, 26, 0.7);
+  background: rgba(6, 16, 22, 0.78);
 }
 
 .building::after {
@@ -103,8 +126,8 @@
   width: 14rpx;
   height: 18rpx;
   border-radius: 4rpx;
-  background: #ffc45a;
-  box-shadow: 42rpx 18rpx 0 #ffc45a, 86rpx 2rpx 0 rgba(255, 196, 90, 0.9);
+  background: rgba(244, 199, 107, 0.9);
+  box-shadow: 42rpx 18rpx 0 rgba(244, 199, 107, 0.9), 86rpx 2rpx 0 rgba(244, 199, 107, 0.72);
 }
 
 .building-a {
@@ -129,12 +152,12 @@
 
 .light-string {
   position: absolute;
-  top: 70rpx;
+  top: 74rpx;
   left: -16rpx;
   right: -16rpx;
   height: 98rpx;
-  border-top: 3rpx solid rgba(246, 177, 76, 0.82);
-  transform: rotate(-4deg);
+  border-top: 3rpx solid rgba(244, 199, 107, 0.78);
+  transform: rotate(-5deg);
 }
 
 .bulb {
@@ -143,8 +166,8 @@
   width: 26rpx;
   height: 34rpx;
   border-radius: 50% 50% 46% 46%;
-  background: #ffd27a;
-  box-shadow: 0 0 22rpx rgba(255, 195, 90, 0.72);
+  background: #f4c76b;
+  box-shadow: 0 0 24rpx rgba(244, 199, 107, 0.72);
   animation: bulbBreath 6.5s ease-in-out infinite;
 }
 
@@ -155,7 +178,7 @@
   left: 10rpx;
   width: 6rpx;
   height: 12rpx;
-  background: rgba(246, 177, 76, 0.92);
+  background: rgba(244, 199, 107, 0.9);
 }
 
 .bulb-a {
@@ -185,16 +208,34 @@
 .hero-board {
   position: absolute;
   left: 30rpx;
-  top: 152rpx;
-  width: 430rpx;
-  min-height: 252rpx;
-  padding: 36rpx 34rpx 32rpx;
-  border-radius: 18rpx;
+  top: 158rpx;
+  width: 448rpx;
+  min-height: 254rpx;
+  padding: 38rpx 34rpx 32rpx;
+  border-radius: 22rpx;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 3rpx, rgba(255, 255, 255, 0) 3rpx 24rpx),
-    linear-gradient(180deg, #744820 0%, #4f3019 100%);
-  border: 3rpx solid rgba(35, 22, 12, 0.62);
-  box-shadow: 0 18rpx 32rpx rgba(18, 12, 6, 0.32), inset 0 2rpx 0 rgba(255, 218, 148, 0.18);
+    linear-gradient(90deg, rgba(255, 246, 222, 0.07) 0 4rpx, rgba(255, 246, 222, 0) 4rpx 26rpx),
+    linear-gradient(180deg, #7a4c25 0%, #5c361d 100%);
+  border: 4rpx solid rgba(45, 27, 14, 0.72);
+  box-shadow: 0 18rpx 34rpx rgba(8, 11, 10, 0.34), inset 0 3rpx 0 rgba(255, 220, 150, 0.18);
+}
+
+.hero-board::before,
+.hero-board::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5rpx;
+  background: rgba(255, 222, 154, 0.12);
+}
+
+.hero-board::before {
+  top: 84rpx;
+}
+
+.hero-board::after {
+  bottom: 56rpx;
 }
 
 .market-badge {
@@ -203,26 +244,30 @@
   left: 22rpx;
   padding: 9rpx 18rpx;
   border-radius: 8rpx;
-  background: #f1ca69;
-  color: #2f2418;
+  background: #f4c76b;
+  color: #3a2719;
   font-size: 24rpx;
   font-weight: 700;
   transform: rotate(-4deg);
-  box-shadow: 0 8rpx 12rpx rgba(25, 17, 9, 0.22);
+  box-shadow: 0 8rpx 12rpx rgba(18, 12, 8, 0.24);
 }
 
 .hero-title {
-  color: #fff4d7;
-  font-size: 82rpx;
+  position: relative;
+  z-index: 1;
+  color: #fff3d2;
+  font-size: 88rpx;
   line-height: 1;
   font-weight: 900;
   letter-spacing: 0;
-  text-shadow: 0 6rpx 0 rgba(45, 25, 12, 0.4);
+  text-shadow: 0 7rpx 0 rgba(45, 25, 12, 0.42), 0 0 18rpx rgba(244, 199, 107, 0.18);
 }
 
 .hero-subtitle {
-  margin-top: 20rpx;
-  color: #f5d898;
+  position: relative;
+  z-index: 1;
+  margin-top: 18rpx;
+  color: #f7dfad;
   font-size: 30rpx;
   line-height: 1.45;
   font-weight: 700;
@@ -230,37 +275,51 @@
 
 .hero-green-strip {
   display: inline-flex;
+  position: relative;
+  z-index: 1;
   margin-top: 22rpx;
   max-width: 100%;
   padding: 12rpx 18rpx;
   border-radius: 8rpx;
-  background: #2f5a3b;
-  color: #fff2cc;
+  background: #3f5f3b;
+  color: #fff9ef;
   font-size: 24rpx;
   line-height: 1.45;
-  box-shadow: 0 8rpx 14rpx rgba(19, 34, 21, 0.24);
+  box-shadow: 0 8rpx 14rpx rgba(15, 28, 18, 0.26);
 }
 
 .side-sign {
   position: absolute;
-  top: 136rpx;
-  right: 28rpx;
-  width: 94rpx;
-  padding: 18rpx 12rpx;
-  border-radius: 12rpx;
-  background: #2c2117;
-  color: #ffe3a4;
-  border: 4rpx solid #80562c;
-  font-size: 28rpx;
+  top: 142rpx;
+  right: 26rpx;
+  width: 104rpx;
+  padding: 18rpx 12rpx 20rpx;
+  border-radius: 14rpx;
+  background: #281f17;
+  color: #ffe6aa;
+  border: 4rpx solid #8b5e34;
+  font-size: 26rpx;
   line-height: 1.28;
   text-align: center;
   font-weight: 800;
   box-shadow: 0 12rpx 20rpx rgba(0, 0, 0, 0.28);
+  transform: rotate(3deg);
+}
+
+.side-sign::before {
+  content: "";
+  position: absolute;
+  top: -24rpx;
+  left: 50%;
+  width: 4rpx;
+  height: 24rpx;
+  background: rgba(244, 199, 107, 0.72);
+  transform: translateX(-50%);
 }
 
 .stall-scene {
   position: absolute;
-  right: 26rpx;
+  right: 24rpx;
   bottom: 42rpx;
   width: 330rpx;
   height: 190rpx;
@@ -273,8 +332,8 @@
   width: 226rpx;
   height: 56rpx;
   border-radius: 8rpx 8rpx 18rpx 18rpx;
-  background: repeating-linear-gradient(90deg, #c8792d 0 42rpx, #f1b04f 42rpx 84rpx);
-  box-shadow: 0 8rpx 16rpx rgba(18, 12, 7, 0.24);
+  background: repeating-linear-gradient(90deg, #3f5f3b 0 42rpx, #f4c76b 42rpx 84rpx);
+  box-shadow: 0 8rpx 18rpx rgba(8, 11, 10, 0.28), 0 0 18rpx rgba(244, 199, 107, 0.16);
 }
 
 .stall-table {
@@ -284,7 +343,7 @@
   bottom: 34rpx;
   height: 86rpx;
   border-radius: 10rpx;
-  background: linear-gradient(180deg, #a06631 0%, #6d3d20 100%);
+  background: linear-gradient(180deg, #8b5e34 0%, #603a22 100%);
   box-shadow: 0 14rpx 22rpx rgba(20, 12, 6, 0.28);
 }
 
@@ -303,7 +362,7 @@
   position: absolute;
   bottom: 22rpx;
   border-radius: 8rpx;
-  background: #f4ca77;
+  background: #f4c76b;
 }
 
 .item-a {
@@ -1100,24 +1159,6 @@
 .paper-goods-card:active {
   transform: translateY(2rpx) scale(0.992);
   box-shadow: 0 5rpx 10rpx rgba(104, 72, 35, 0.08);
-}
-
-.goods-ribbon {
-  position: absolute;
-  left: -8rpx;
-  top: 18rpx;
-  z-index: 2;
-  padding: 8rpx 14rpx;
-  border-radius: 8rpx 14rpx 14rpx 8rpx;
-  background: #2f5a3b;
-  color: #fff4d3;
-  font-size: 23rpx;
-  font-weight: 900;
-  box-shadow: 0 7rpx 10rpx rgba(47, 90, 59, 0.22);
-}
-
-.goods-ribbon.wanted {
-  background: #be4e33;
 }
 
 .goods-media {

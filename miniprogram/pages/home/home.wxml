@@ -1,9 +1,5 @@
 <template name="homeGoodsCard">
   <view class="goods-card paper-goods-card {{item.publishType == 'wanted' ? 'wanted-card' : ''}}" data-id="{{item._id}}" bindtap="goDetail">
-    <view class="goods-ribbon {{item.publishType == 'wanted' ? 'wanted' : ''}}">
-      {{item.publishType == 'wanted' ? '求购' : '新货'}}
-    </view>
-
     <view class="goods-media">
       <image wx:if="{{item.cover}}" class="goods-img" src="{{item.cover}}" mode="aspectFill" />
       <view wx:elif="{{item.publishType == 'wanted'}}" class="wanted-note">
@@ -62,13 +58,13 @@
     </view>
 
     <view class="hero-board">
-      <view class="market-badge">今晚开集</view>
-      <view class="hero-title">U校集</view>
-      <view class="hero-subtitle">校园里的宝贝，都在这里开摊</view>
-      <view class="hero-green-strip">你好，{{greetingName}}，来逛逛今天的后街集市</view>
+      <view class="market-badge">今晚开摊</view>
+      <view class="hero-title">u校集</view>
+      <view class="hero-subtitle">校园里的宝贝，都在这里碰头</view>
+      <view class="hero-green-strip">今晚开摊，好物等你来淘</view>
     </view>
 
-    <view class="side-sign">后街集市</view>
+    <view class="side-sign">神秘摊位</view>
 
     <view class="stall-scene">
       <view class="stall-canopy"></view>

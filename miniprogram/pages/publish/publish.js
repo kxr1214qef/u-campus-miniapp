@@ -16,8 +16,8 @@ const BOOK_TAG_TITLE = '4. 书籍标签（选填）'
 const DEFAULT_TAG_HINT = '标签可不选，发布后买家依旧可以通过分类和标题找到商品。'
 const BOOK_TAG_HINT = '教材资料建议补充标签，买家会更快找到你。'
 const PUBLISH_TYPE_OPTIONS = [
-  { type: 'idle', text: '我想卖' },
-  { type: 'wanted', text: '我想收' }
+  { type: 'idle', text: '出物奇摊' },
+  { type: 'wanted', text: '求购悬赏' }
 ]
 const PUBLISH_COPY = {
   idle: {
@@ -162,7 +162,8 @@ Page({
   },
 
   onSwitchPublishType(e) {
-    const nextType = this.data.publishType === 'wanted' ? 'idle' : 'wanted'
+    const nextType = (e && e.currentTarget && e.currentTarget.dataset && e.currentTarget.dataset.type) ||
+      (this.data.publishType === 'wanted' ? 'idle' : 'wanted')
     this.switchPublishType(nextType)
   },
 
